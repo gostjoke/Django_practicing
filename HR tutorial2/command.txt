@@ -1,0 +1,10 @@
+python manage.py makemigrations 
+python manage.py migrate   將model 引入db
+python manage.py sqlmigrate posts 0001   用來查db
+
+python manage.py createsuperuser 
+
+will 
+123
+
+python manage.py runserver 0.0.0.0:8000 # runserver
