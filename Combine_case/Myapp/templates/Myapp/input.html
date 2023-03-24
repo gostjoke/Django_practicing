@@ -1,0 +1,50 @@
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-8">
+            <label>{{ form.emp_id.label }}</label>
+            {{ form.emp_id }}
+        </div>
+        <div class="form-group col-md-6">
+            <label>{{ form.vaction_start.label }}</label>
+            {{ form.vaction_start }}
+        </div>
+        <div class="form-group col-md-4">
+            <label>{{ form.vaction_end.label }}</label>
+            {{ form.vaction_end }}
+        </div>
+        <div class="form-group col-md-2">
+            <label>{{ form.vaction_length.label }}</label>
+            {{ form.vaction_length }}
+        </div>
+        <div class="form-group col-md-2">
+            <input type="submit" class="btn btn-success" style="margin-top:30px;" value="儲存">
+        </div>
+    </div>
+</form>
+<hr>
+<table>
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th></th>
+        </tr>
+    </thead>
+        <tbody>
+            {% for table in tables %}
+                <tr>
+                    <td>{{ table.emp_id }}</td>
+                    <td>{{ table.vaction_start }}</td>
+                    <td>{{ table.vaction_end }}</td>
+                    <td>
+                        <a href="{% url 'Update' table.id %}" class="btn btn-info">修改</a>
+                        <a href="{% url 'Delete' table.id %}" class="btn btn-danger">刪除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+</table>
+
+
