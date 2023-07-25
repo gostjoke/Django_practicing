@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div>
+
+  
+    <div class="container">
+        <!-- 按鈕 跳轉 -->
+        <div style="margin-bottom: 10px;">
+            <a class="btn btn-success" href="/user/add/" target="_blank">
+                <!-- 圖標 -->
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
+                新建用戶
+            </a>
+
+          <a class="btn btn-success" href="/user/model/form/add/" target="_blank">
+              <!-- 圖標 -->
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
+              新建用戶ModelForm
+          </a>
+          <div style="float: right; width: 300px;">
+            <form method="get"> <!--  get 去得到現在的q, name 為q 來拼接-->
+              <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search for..." value="{{search_data}}">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit"> <!-- submit 重要 -->
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+                </span>
+              </div><!-- /input-group -->
+            </form>
+          </div>
+        </div>
+
+        <!-- 面板 -->
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading">
+                  <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                  用戶列表
+            </div>
+            <div class="panel-body">
+              <p>Some default panel content</p>
+            </div>
+      
+            <!-- Table -->
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>姓名</th>
+                  <th>密碼</th>
+                  <th>年齡</th>
+                  <th>帳戶餘額</th>
+                  <th>入職時間</th>
+                  <th>性別</th>
+                  <th>所屬部門</th>
+                  <th>操作</th>
+            
+                </tr>
+              </thead>
+              <tbody>
+                {% for obj in queryset %}
+                <tr>
+
+                  <th scope="row">{{ obj.id }}</th>
+                  <td>{{ obj.name }}</td>
+                  <td>{{ obj.password }}</td>
+                  <td>{{ obj.age }}</td>
+                  <td>$ {{ obj.account }}</td>
+                  <td>{{ obj.create_time | date:"Y-m-d" }}</td>
+                  <td>{{ obj.get_gender_display }}</td>
+                  <td>{{ obj.depart.title }}</td>
+                  <td>
+                    <a class="btn btn-primary btn-xs" href="/user/{{ obj.id }}/edit/">編輯</a>
+                    <a class="btn btn-danger btn-xs" href="/user/{{ obj.id }}/delete/"> 刪除</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+      
+      <!-- 分頁 -->
+    <ul class="pagination">
+    
+    {{page_string}}
+
+    </ul>
+    <!-- 分頁 -->
+  </div>
+  </div>
+
+{% endblock %}
