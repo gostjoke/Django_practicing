@@ -1,0 +1,177 @@
+{% load static %}
+{% comment %} <h1>Login Mode</h1>
+<h3>登入</h3>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+
+    <input class="btn btn-primary" type="submit" value="login" />
+    <p>還沒有帳號嗎? <a href="{% url 'Register' %}">註冊</a></p>
+</form> {% endcomment %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .login-image-container {
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            /* 將元素垂直居中 */
+            justify-content: center;
+            /* 將元素水平居中 */
+        }
+
+        .login-image {
+            width: 50%;
+            /* 調整圖片的大小 */
+            height: auto;
+            position: relative;
+        }
+
+        .login-form {
+            background-color: #57d8eb;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-form h1 {
+            color: #1900ff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .form-group label {
+            font-size: 16px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .login-button {
+            background-color: #007bff;
+            border: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-button:hover {
+            background-color: #0056b3;
+        }
+
+        .rectangle {
+            width: 300px;
+            height: 50px;
+            background-color: #f6f9b3;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            /* 添加圆角，可以根据需要调整数值 */
+        }
+        .rectangle a {
+            margin-right: 10px; /* You can adjust this value to add more or less spacing */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-image-container">
+            <div class="login-image">
+                <img style="height: 180px;" src="../static/img/new.png" alt="img dead">
+                <div>
+                    <h1 style="font-size: 35px; text-align: left; color:Red  ;"> NSG Testing System</h1>
+                </div>
+            </div>
+        </div>
+        <div class="login-form">
+            <div class="rectangle">
+                <a>NSG Foxconn Login </a>
+            </div>
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username：</label>
+                    <!-- <input type="text" id="username" name="username" required> -->
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="password">密碼：</label>
+                    <!-- <input type="password" id="password" name="password" required></input> -->
+                    {{ form.password }}
+                </div>
+                <div class="form-group">
+                    <label for="id_code">圖片驗證</label></label>
+                    <div class="col-xs-7"  style="display: flex; align-items: center;">
+                        <!-- <input type="text" name="login_valid" class="form-control" placeholder="Input" required="" id="id_code" style="width: 120px;"> -->
+                        {{ form.login_valid }}
+                        <a href="/login?next=/">Not Clear</a>
+                        <img id="image_code" src="/image/login_valid" alt="no" style="width: 125px;"> 
+                        &nbsp;
+                        <!-- 動態生成 從url 生成圖片 -->
+                    </div>
+                    <a>{{form.login_valid.errors.0}}</a>
+                </div>
+                <button class="login-button" type="submit">登入</button>
+            </form>
+            <hr>
+            <div>
+                <div class="rectangle"> 
+                    <a href="http://10.16.36.171:8080/default.aspx"> EFox </a>
+                    <a>||
+                    </a>
+                    <a href="http://10.16.36.177/"> New EFox </a>
+                </div>
+                <div style="text-align:center">
+                    <a>Tien-Wei Hsu Present</a>
+                </div>   
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

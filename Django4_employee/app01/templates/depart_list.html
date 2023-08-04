@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+      <div>
+        <div class="container">
+            <!-- 按鈕 跳轉 -->
+            <div style="margin-bottom: 10px;">
+                <a class="btn btn-success" href="/depart/add/" target="_blank">
+                    <!-- 圖標 -->
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 
+                    新建部門
+                </a>
+            </div>
+
+            
+            <!-- 面板 -->
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                      <span class="glyphicon glyphicon-th" aria-hidden="true"></span>
+                      部門列表
+                </div>
+                <div class="panel-body">
+                  <p>Some default panel content</p>
+                </div>
+          
+                <!-- Table -->
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>名稱</th>
+                      <th>操作</th>
+                
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for obj in queryset %}
+                    <tr>
+
+                      <th scope="row">{{obj.id}}</th>
+                      <td>{{obj.title}}</td>
+                      <td>
+                        <a class="btn btn-primary btn-xs" href="/depart/{{ obj.id }}/edit/">編輯</a>
+                        <a class="btn btn-danger btn-xs" href="/depart/delete/?nid={{ obj.id }}"> 刪除</a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+        </div>
+      </div>
+
+{% endblock %}

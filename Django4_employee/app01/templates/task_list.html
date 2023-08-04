@@ -1,0 +1,43 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <h1> 任務管理 </h1>
+    <h3> Sample 1</h3>
+
+    <input id="btn1" type="text" class="btn btn-primary" value="submit" onclick="clickMe();">
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        // 頁面框架加載完之後代碼自動執行
+        bindBtn1Event();
+
+    })
+
+    function bindBtn1Event() {
+        $("#btn1").click(function () {
+            function clickMe() {
+                $.ajax({
+                    url: '/task/ajax/',
+                    type: "post", //get?
+                    data: {
+                        n1: 123,
+                        n2: 456
+                    }, success: function (res) {
+                        console.log(res);
+                    }
+                })
+            }
+        })
+    }
+
+
+    //  將值傳入 後臺獲得task/ajax/?n1=123&n2=456
+</script>
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}
